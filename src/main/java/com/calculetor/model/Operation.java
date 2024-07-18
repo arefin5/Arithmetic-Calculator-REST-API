@@ -13,12 +13,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Operation {
     @Id
-    @GeneratedValue
-    private Integer id;
-    private OperationType type;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @OneToOne
-    private Record record;
+    private String type; // e.g., addition, subtraction, etc.
+
+    private Integer cost;
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
